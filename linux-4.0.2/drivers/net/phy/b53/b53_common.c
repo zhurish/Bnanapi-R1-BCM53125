@@ -1416,7 +1416,7 @@ int b53_switch_register(struct b53_device *dev)
 	ret = b53_switch_init(dev);
 	if (ret)
 		return ret;
-
+	bcm53_ctl_init(dev);
 	pr_info("found switch: %s, rev %i\n", dev->sw_dev.name, dev->core_rev);
 
 	return register_switch(&dev->sw_dev, NULL);

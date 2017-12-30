@@ -68,6 +68,10 @@ struct b53_port {
 };
 
 struct b53_device {
+
+	dev_t dev_num;
+	struct class *bcm53xx_class;
+
 	struct switch_dev sw_dev;
 	struct b53_platform_data *pdata;
 
@@ -101,6 +105,27 @@ struct b53_device {
 
 	char *buf;
 };
+
+
+#define B53BIT(n)	(((n)+7)/8)
+#define B53BIT_WRITE 1
+#define B53BIT_READ 2
+#pragma pack(1)
+struct b53_ctl_data_t
+{
+	u8 cmd;
+	u8 bit;
+	u8 page;
+	u8 reg;
+	union
+	{
+		u8  val8;
+		u16 val16;
+		u32 val32;
+		u64 val64;
+	}data;
+};// __attribute__ ((aligned (1)));
+#pragma pack()
 
 #define b53_for_each_port(dev, i) \
 	for (i = 0; i < B53_N_PORTS; i++) \
@@ -180,8 +205,13 @@ int b53_switch_detect(struct b53_device *dev);
 
 int b53_switch_register(struct b53_device *dev);
 
+int bcm53_ctl_init(struct b53_device *dev);
+int bcm53_ctl_exit(struct b53_device *dev);
+
+
 static inline void b53_switch_remove(struct b53_device *dev)
 {
+	bcm53_ctl_exit(dev);
 	unregister_switch(&dev->sw_dev);
 }
 

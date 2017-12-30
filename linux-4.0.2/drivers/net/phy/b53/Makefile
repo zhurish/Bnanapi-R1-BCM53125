@@ -1,4 +1,5 @@
 obj-$(CONFIG_B53)		+= b53_common.o
+obj-$(CONFIG_B53)		+= b53_ctl.o
 
 obj-$(CONFIG_B53_PHY_FIXUP)	+= b53_phy_fixup.o
 

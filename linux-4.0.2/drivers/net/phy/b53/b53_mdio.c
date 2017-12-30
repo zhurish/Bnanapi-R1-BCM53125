@@ -344,7 +344,7 @@ static int b53_phy_read_status(struct phy_device *phydev)
 /* BCM5325, BCM539x */
 static struct phy_driver b53_phy_driver_id1 = {
 	.phy_id		= 0x0143bc00,
-	.name		= "Broadcom B53 (1)",
+	.name		= "Broadcom BCM53xx",
 	.phy_id_mask	= 0x1ffffc00,
 	.features	= 0,
 	.probe		= b53_phy_probe,
@@ -360,7 +360,7 @@ static struct phy_driver b53_phy_driver_id1 = {
 /* BCM53125, BCM53128 */
 static struct phy_driver b53_phy_driver_id2 = {
 	.phy_id		= 0x03625c00,
-	.name		= "Broadcom B53 (2)",
+	.name		= "Broadcom BCM531xx",
 	.phy_id_mask	= 0x1ffffc00,
 	.features	= 0,
 	.probe		= b53_phy_probe,
@@ -376,7 +376,7 @@ static struct phy_driver b53_phy_driver_id2 = {
 /* BCM5365 */
 static struct phy_driver b53_phy_driver_id3 = {
 	.phy_id		= 0x00406000,
-	.name		= "Broadcom B53 (3)",
+	.name		= "Broadcom BCM5365",
 	.phy_id_mask	= 0x1ffffc00,
 	.features	= 0,
 	.probe		= b53_phy_probe,
